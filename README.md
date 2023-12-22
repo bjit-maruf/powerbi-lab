@@ -1,5 +1,5 @@
 # Welcome to Power BI Lab
-## Installation 
+## Installations and Downloads
 >[Download Git](https://git-scm.com/download/win)<br/>
 >[Download VScode](https://code.visualstudio.com/)<br/>
 >[Download Power BI](https://www.microsoft.com/en-us/download/details.aspx?id=58494)<br/>
