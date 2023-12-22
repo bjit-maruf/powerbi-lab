@@ -1,8 +1,9 @@
 # Welcome to Power BI Lab
-## Installation 
+## Installations and Downloads
 >[Download Git](https://git-scm.com/download/win)<br/>
 >[Download VScode](https://code.visualstudio.com/)<br/>
 >[Download Power BI](https://www.microsoft.com/en-us/download/details.aspx?id=58494)<br/>
+>[Download data source](https://nextcloud.bjitgroup.com/index.php/s/28NwT5ZrMqcT2LF)
 ## Getting the source
 ```
 git clone https://github.com/bjit-maruf/powerbi-lab.git
