@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.49\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU11\",\"version\":\"5.49\",\"type\":2}},\"activeSectionIndex\":2,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "config": "{\"version\":\"5.49\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU11\",\"version\":\"5.49\",\"type\":2}},\"activeSectionIndex\":3,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -37,6 +37,45 @@
       "name": "ReportSection4cb7ffad3502ed30bbc6",
       "ordinal": 2,
       "visualContainers": [],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Mahfuz 4",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectionb05bed7e90063634b173",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"114fe8bea041b27017be\",\"layouts\":[{\"id\":0,\"position\":{\"x\":537.0731707317073,\"y\":360,\"z\":0,\"width\":279.5121951219512,\"height\":279.5121951219512,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"hundredPercentStackedBarChart\",\"autoSelectVisualType\":false,\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 279.51,
+          "width": 279.51,
+          "x": 537.07,
+          "y": 360.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"33d896eb4700ed58c085\",\"layouts\":[{\"id\":0,\"position\":{\"x\":150,\"y\":104.5,\"width\":300,\"height\":150,\"z\":1,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 150.00,
+          "width": 300.00,
+          "x": 150.00,
+          "y": 104.50,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"57579b1ae08553a7a0d1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":26.341463414634145,\"y\":360,\"z\":2,\"width\":300,\"height\":149.2682926829268,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 149.27,
+          "width": 300.00,
+          "x": 26.34,
+          "y": 360.00,
+          "z": 2.00
+        }
+      ],
       "width": 1280.00
     },
     {
