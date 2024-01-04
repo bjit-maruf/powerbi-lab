@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Orders\",\"People\",\"Returns\"]"
+        "value": "[\"Orders\",\"People\",\"Returns\",\"Products List\"]"
       }
     ],
     "culture": "en-US",
@@ -56,11 +56,25 @@
         "toTable": "LocalDateTable_9af78a7a-c634-4ffd-a157-1f06a60f20bf"
       },
       {
-        "name": "13390978-9b19-42b6-af48-c41e9403180e",
+        "name": "805c539e-6e92-473c-9213-3cb0cea58972",
+        "fromColumn": "Order ID",
+        "fromTable": "Orders",
+        "toColumn": "Order ID",
+        "toTable": "Returns"
+      },
+      {
+        "name": "b9e8116c-3933-491a-beb2-738b02e14c55",
         "fromColumn": "Region",
         "fromTable": "Orders",
         "toColumn": "Region",
         "toTable": "People"
+      },
+      {
+        "name": "7b8b8a1e-4105-4b30-a355-062e689b329e",
+        "fromColumn": "Product ID",
+        "fromTable": "Orders",
+        "toColumn": "Product ID",
+        "toTable": "Products List"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -395,19 +409,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "Customer Name",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "e07fda45-d3aa-4f77-a8f9-759acbf1b25c",
-            "sourceColumn": "Customer Name",
-            "summarizeBy": "none"
-          },
-          {
             "name": "Segment",
             "annotations": [
               {
@@ -444,32 +445,6 @@
             "dataType": "string",
             "lineageTag": "e229c8db-51fb-4a25-8295-a404877be565",
             "sourceColumn": "City",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "State/Province",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "5b4553f4-7845-4472-8908-109eae469655",
-            "sourceColumn": "State/Province",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Postal Code",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "b901237b-af06-4bd5-8a03-03214d42160e",
-            "sourceColumn": "Postal Code",
             "summarizeBy": "none"
           },
           {
@@ -522,19 +497,6 @@
             "dataType": "string",
             "lineageTag": "fef47d6f-edda-4b34-bf1b-a2da11084352",
             "sourceColumn": "Sub-Category",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Product Name",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "b5e6cc2d-d622-4867-9647-a18cf52331f5",
-            "sourceColumn": "Product Name",
             "summarizeBy": "none"
           },
           {
@@ -614,6 +576,20 @@
             "lineageTag": "f11c7855-86c7-44c2-b3f6-036a4033e821",
             "sourceColumn": "IsProfitable",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Arrival Time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f1954b15-725c-4a06-8acc-c83a5f38deff",
+            "sourceColumn": "Arrival Time",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "70c6c6a5-935a-4d52-9088-5e933a561112",
@@ -628,9 +604,14 @@
                 "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
-                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\")",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Added Conditional Column\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Added Custom\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Product Name\"})",
                 "in",
-                "    #\"Added Conditional Column\""
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
@@ -1152,9 +1133,78 @@
                 "    Returns_Sheet = Source{[Item=\"Returns\",Kind=\"Sheet\"]}[Data],",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(Returns_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}}),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
-                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Returned\", type text}, {\"Order ID\", type text}})",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Returned\", type text}, {\"Order ID\", type text}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type1\")",
                 "in",
-                "    #\"Changed Type1\""
+                "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Products List",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Product ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e5796caa-4aea-4748-af16-6422e4138fbb",
+            "sourceColumn": "Product ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "057fdf1b-3282-48ea-acfb-c3115d3f11bd",
+            "sourceColumn": "Product Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "1b0f7e28-5934-4cb2-aec0-c0c8995ec255",
+        "partitions": [
+          {
+            "name": "Products List",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"G:\\Practice\\POWER BI\\Power Bi Session By BJIT\\Sample - Superstore (1).xlsx\"), null, true),",
+                "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Added Conditional Column\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Added Custom\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\"}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Removed Columns\",{\"Product ID\", \"Product Name\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\")",
+                "in",
+                "    #\"Removed Duplicates\""
               ],
               "type": "m"
             }
