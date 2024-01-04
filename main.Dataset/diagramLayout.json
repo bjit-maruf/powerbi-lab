@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 68,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 294,
-            "y": -10
+            "x": 415,
+            "y": 48
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "d97cdedf-bfe4-49b8-b1f9-c54d0e0a1f9e",
@@ -19,12 +19,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 10,
-            "y": 76
+            "x": 95,
+            "y": 21
           },
           "nodeIndex": "People",
           "nodeLineageTag": "10d4c8cc-6745-4929-bb17-01ba51704d0e",
@@ -32,12 +32,12 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
-            "x": 568,
-            "y": 86
+            "x": 84,
+            "y": 313
           },
           "nodeIndex": "Returns",
           "nodeLineageTag": "5fc7fe22-816d-4e31-a566-ec692655a2b2",
@@ -45,7 +45,20 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 728.79999923706055,
+            "y": 327
+          },
+          "nodeIndex": "Products List",
+          "nodeLineageTag": "026da1b7-a1ca-4d95-9ab2-6fcbd29989e3",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
         }
       ],
       "name": "All tables",
