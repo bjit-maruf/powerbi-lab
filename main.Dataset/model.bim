@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Orders\",\"Returns\",\"People\",\"Detect language\"]"
+        "value": "[\"Orders\",\"Returns\",\"People\",\"Products List\"]"
       }
     ],
     "culture": "en-US",
@@ -38,20 +38,6 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
-    "expressions": [
-      {
-        "name": "Detect language",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Function"
-          }
-        ],
-        "expression": "AIFunctions.Contents(){[Key = \"CognitiveServices.DetectLanguagetext\"]}[Data]",
-        "kind": "m",
-        "lineageTag": "abbbd2a1-d628-48c0-ad24-5da34758c34c"
-      }
-    ],
     "relationships": [
       {
         "name": "3193e46c-b807-44b2-a0b0-a90ddfa741b0",
@@ -70,7 +56,7 @@
         "toTable": "LocalDateTable_c913952d-c095-4103-8e6a-d70b8be94bcf"
       },
       {
-        "name": "ceb0ee83-82ad-48c6-9528-4a06b8ff3394",
+        "name": "289374e4-9070-41c5-8459-ff2fdd1879e9",
         "fromColumn": "Region",
         "fromTable": "Orders",
         "toColumn": "Region",
@@ -629,6 +615,20 @@
             "lineageTag": "00748d55-fcf8-4b25-b033-f8a72e776b5a",
             "sourceColumn": "IsProfitable",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Arrival Time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c00958de-b3dd-4800-b1c4-ee5647dd20a5",
+            "sourceColumn": "Arrival Time",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "6d3bf931-ebed-4d3c-af88-7052ea8183c4",
@@ -644,9 +644,14 @@
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Row ID\", Int64.Type}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", Int64.Type}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
                 "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
-                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"IsProfitable\", type text}})",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"IsProfitable\", type text}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type1\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date]-[Order Date]),",
+                "    #\"Changed Type2\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Arrival Time\", type duration}}),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Changed Type2\",{{\"Arrival Time\", Duration.Days, Int64.Type}})",
                 "in",
-                "    #\"Changed Type1\""
+                "    #\"Extracted Days\""
               ],
               "type": "m"
             }
@@ -1171,6 +1176,76 @@
                 "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Regional Manager\", type text}, {\"Region\", type text}})",
                 "in",
                 "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Products List",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Product ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "725a6dbb-3ef4-4fd0-8ff3-43584e6ebcf1",
+            "sourceColumn": "Product ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e936fc16-d8bb-4abf-add8-91d1b8761abb",
+            "sourceColumn": "Product Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "279cebea-e7ed-40fc-9fb4-e54b2afdb3df",
+        "partitions": [
+          {
+            "name": "Products List",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\HP\\Documents\\GitHub\\powerbi-lab\\Data\\Sample - Superstore.xlsx\"), null, true),",
+                "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Row ID\", Int64.Type}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", Int64.Type}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"IsProfitable\", type text}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type1\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date]-[Order Date]),",
+                "    #\"Changed Type2\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Arrival Time\", type duration}}),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Changed Type2\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Extracted Days\",{\"Product ID\", \"Product Name\"}),",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Removed Other Columns\",{{\"Product ID\", Order.Ascending}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Sorted Rows\", {\"Product ID\"})",
+                "in",
+                "    #\"Removed Duplicates\""
               ],
               "type": "m"
             }
