@@ -1,0 +1,10 @@
+1. Filter for US only
+2. Filter between days (between Order dates)
+3. From Delivery type and days needed to Delivery
+
+1. Red (First/Standard - 4-7)
+2. Green
+
+New Table with products
+
+4. Relationship
