@@ -590,6 +590,19 @@
             "lineageTag": "f1954b15-725c-4a06-8acc-c83a5f38deff",
             "sourceColumn": "Arrival Time",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "Delivery Flag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f28e3ca4-9156-445e-bdae-483779adcf61",
+            "sourceColumn": "Delivery Flag",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "70c6c6a5-935a-4d52-9088-5e933a561112",
@@ -609,9 +622,10 @@
                 "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
                 "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
                 "    #\"Extracted Days\" = Table.TransformColumns(#\"Added Custom\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Product Name\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Product Name\"}),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Removed Columns\", \"Delivery Flag\", each if ([Ship Mode] = \"Standard Class\" or [Ship Mode] = \"First Class\") and ([Arrival Time] >=4 and [Arrival Time]<=7) then \"RED\" else \"Green\")",
                 "in",
-                "    #\"Removed Columns\""
+                "    #\"Added Custom1\""
               ],
               "type": "m"
             }
