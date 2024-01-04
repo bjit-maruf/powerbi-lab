@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 294,
-            "y": -10
+            "x": 511,
+            "y": 0
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "fdb717ee-925c-4630-b911-1b53076d30d3",
@@ -23,8 +23,8 @@
         },
         {
           "location": {
-            "x": 10,
-            "y": 76
+            "x": 167,
+            "y": 0
           },
           "nodeIndex": "People",
           "nodeLineageTag": "fb104892-e6ed-42f0-8de9-955f01490952",
@@ -36,11 +36,24 @@
         },
         {
           "location": {
-            "x": 568,
-            "y": 86
+            "x": 152,
+            "y": 189
           },
           "nodeIndex": "Returns",
           "nodeLineageTag": "e2b11ad2-3e71-46d3-9724-b1e6e48f5a91",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 512,
+            "y": 329
+          },
+          "nodeIndex": "Product List",
+          "nodeLineageTag": "e43c1148-3783-4fcc-b538-c1fd70152d41",
           "size": {
             "height": 128,
             "width": 234

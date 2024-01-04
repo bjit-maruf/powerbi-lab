@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Orders\",\"People\",\"Returns\"]"
+        "value": "[\"Orders\",\"People\",\"Returns\",\"Product List\"]"
       }
     ],
     "culture": "en-US",
@@ -54,13 +54,6 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_a314c639-55e9-4905-9a69-273da6d1c99a"
-      },
-      {
-        "name": "531bba6a-1045-4875-819f-93e3f00de40f",
-        "fromColumn": "Region",
-        "fromTable": "Orders",
-        "toColumn": "Region",
-        "toTable": "People"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -395,19 +388,6 @@
             "summarizeBy": "none"
           },
           {
-            "name": "Customer Name",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "9fce4a96-515a-4727-a11d-9d227b70d1f1",
-            "sourceColumn": "Customer Name",
-            "summarizeBy": "none"
-          },
-          {
             "name": "Segment",
             "annotations": [
               {
@@ -444,32 +424,6 @@
             "dataType": "string",
             "lineageTag": "c9f8a30b-91b4-436f-9fe0-5a3ccae64304",
             "sourceColumn": "City",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "State/Province",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "6f5ce2c7-2a94-4a07-960f-e71bfcc828ae",
-            "sourceColumn": "State/Province",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Postal Code",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "e31c578b-9b00-4bbe-a281-4c7d7aad35bc",
-            "sourceColumn": "Postal Code",
             "summarizeBy": "none"
           },
           {
@@ -629,9 +583,14 @@
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
                 "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"Custom\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
-                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"Custom\", type text}})",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"Custom\", type text}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type1\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Delivery Time\", each [Ship Date]-[Order Date]),",
+                "    #\"Changed Type2\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Delivery Time\", type duration}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type2\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Delivery Time\"})",
                 "in",
-                "    #\"Changed Type1\""
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
@@ -1156,6 +1115,74 @@
                 "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Returned\", type text}, {\"Order ID\", type text}})",
                 "in",
                 "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Product List",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Product ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "75cfdb17-fbf6-47cd-9389-7d9abad1b3e5",
+            "sourceColumn": "Product ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2c90da11-e41c-48f7-8f1d-b9d80f3e737e",
+            "sourceColumn": "Product Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e43c1148-3783-4fcc-b538-c1fd70152d41",
+        "partitions": [
+          {
+            "name": "Product List",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"D:\\Documents\\Learning & Training\\Power BI\\PowerBITrainingDec2023\\Sample - Superstore.xlsx\"), null, true),",
+                "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"Custom\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"Custom\", type text}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type1\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Delivery Time\", each [Ship Date]-[Order Date]),",
+                "    #\"Changed Type2\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Delivery Time\", type duration}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type2\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Delivery Time\"}),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Removed Columns\",{\"Product ID\", \"Product Name\"})",
+                "in",
+                "    #\"Removed Other Columns\""
               ],
               "type": "m"
             }
