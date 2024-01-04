@@ -7,7 +7,60 @@
         "x": 0,
         "y": 0
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 294.18475118062975,
+            "y": -10
+          },
+          "nodeIndex": "Orders",
+          "nodeLineageTag": "66ac8fc8-9cad-4ccf-b555-7c34a00ed3cf",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 10,
+            "y": 57.065109177341483
+          },
+          "nodeIndex": "People",
+          "nodeLineageTag": "3923c36c-9dee-4763-927f-83394a2c4650",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 578.36163941535972,
+            "y": 89.324992632434316
+          },
+          "nodeIndex": "Returns",
+          "nodeLineageTag": "71a639ed-9bcb-4d52-ba26-6423a89d6769",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852.36163941535972,
+            "y": 86
+          },
+          "nodeIndex": "Products List",
+          "nodeLineageTag": "c6427559-03f6-42bb-b705-1553a4cfa87b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
       "name": "All tables",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,
