@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 471,
-            "y": 0
+            "x": 417,
+            "y": 20
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "d97cdedf-bfe4-49b8-b1f9-c54d0e0a1f9e",
@@ -23,8 +23,8 @@
         },
         {
           "location": {
-            "x": 95,
-            "y": 21
+            "x": 72,
+            "y": 0
           },
           "nodeIndex": "People",
           "nodeLineageTag": "10d4c8cc-6745-4929-bb17-01ba51704d0e",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 84,
-            "y": 313
+            "x": 699,
+            "y": 0
           },
           "nodeIndex": "Returns",
           "nodeLineageTag": "5fc7fe22-816d-4e31-a566-ec692655a2b2",
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 728.79999923706055,
-            "y": 327
+            "x": 266,
+            "y": 401
           },
           "nodeIndex": "Products List",
           "nodeLineageTag": "026da1b7-a1ca-4d95-9ab2-6fcbd29989e3",
@@ -62,8 +62,8 @@
         },
         {
           "location": {
-            "x": 928.79999923706055,
-            "y": 151.5
+            "x": 825.79999923706055,
+            "y": 340.5
           },
           "nodeIndex": "DimShipping details",
           "nodeLineageTag": "9b64abf7-bc9f-4c43-a810-d1cbb75a5764",
@@ -75,13 +75,39 @@
         },
         {
           "location": {
-            "x": 1128.7999992370605,
-            "y": 139.5
+            "x": 0,
+            "y": 339
           },
           "nodeIndex": "DimCustomer Details",
-          "nodeLineageTag": "3f8a7cf5-8d91-4b4a-899c-102ef7fd3114",
+          "nodeLineageTag": "2f5745bc-4cf6-4910-8d9e-7b86ebdb3ee5",
           "size": {
             "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1063.7999992370605,
+            "y": 0
+          },
+          "nodeIndex": "Returned Orders",
+          "nodeLineageTag": "f66955ca-a049-4586-9d39-0a6b4d110142",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1100.5999870300293,
+            "y": 371.5
+          },
+          "nodeIndex": "Spilted Country",
+          "nodeLineageTag": "4b1ea4f9-40fe-42b6-9f73-5a85e1a46721",
+          "size": {
+            "height": 128,
             "width": 234
           },
           "zIndex": 0
