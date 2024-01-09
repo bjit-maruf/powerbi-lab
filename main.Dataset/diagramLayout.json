@@ -59,6 +59,32 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 644,
+            "y": 128.5
+          },
+          "nodeIndex": "DimCustomerInfo",
+          "nodeLineageTag": "660d5566-9501-4f0a-aeb7-aaab77e5299e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 928,
+            "y": 152.5
+          },
+          "nodeIndex": "DimShippingDetail",
+          "nodeLineageTag": "3f6e6c61-60f5-42c4-a4b8-8fe227023cb2",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
