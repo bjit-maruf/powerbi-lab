@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 68,
+        "x": 0,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 415,
-            "y": 48
+            "x": 471,
+            "y": 0
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "d97cdedf-bfe4-49b8-b1f9-c54d0e0a1f9e",
@@ -19,7 +19,7 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 4
         },
         {
           "location": {
@@ -32,7 +32,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 2
         },
         {
           "location": {
@@ -58,7 +58,33 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 928.79999923706055,
+            "y": 151.5
+          },
+          "nodeIndex": "DimShipping details",
+          "nodeLineageTag": "9b64abf7-bc9f-4c43-a810-d1cbb75a5764",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1128.7999992370605,
+            "y": 139.5
+          },
+          "nodeIndex": "DimCustomer Details",
+          "nodeLineageTag": "3f8a7cf5-8d91-4b4a-899c-102ef7fd3114",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
