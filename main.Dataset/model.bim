@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Orders\",\"People\",\"Returns\",\"Products List\"]"
+        "value": "[\"Orders\",\"People\",\"Returns\",\"Products List\",\"DimShippingDetail\",\"DimCustomerDetail\"]"
       }
     ],
     "culture": "en-US",
@@ -75,6 +75,14 @@
         "fromTable": "Orders",
         "toColumn": "Product ID",
         "toTable": "Products List"
+      },
+      {
+        "name": "74587cc1-101a-43f1-ab15-71f5aaae6ea8",
+        "fromColumn": "Ship Date",
+        "fromTable": "DimShippingDetail",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_5ea63b5e-8ace-49d7-8a2c-acdabea70790"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -1219,6 +1227,385 @@
                 "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Other Columns\")",
                 "in",
                 "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimShippingDetail",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Order ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5db65843-a9c9-4efd-90cf-f093a0b8a4d1",
+            "sourceColumn": "Order ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Ship Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "e26a810e-60c3-40d6-969a-88047309abe1",
+            "sourceColumn": "Ship Date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_5ea63b5e-8ace-49d7-8a2c-acdabea70790"
+                },
+                "isDefault": true,
+                "relationship": "74587cc1-101a-43f1-ab15-71f5aaae6ea8"
+              }
+            ]
+          },
+          {
+            "name": "Ship Mode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "54c38f42-4689-4228-9acd-98e8336a5f2b",
+            "sourceColumn": "Ship Mode",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "5ded6ae5-5319-4a17-8135-84769a849620",
+        "partitions": [
+          {
+            "name": "DimShippingDetail",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"G:\\Practice\\POWER BI\\Power Bi Session By BJIT\\Sample - Superstore (1).xlsx\"), null, true),",
+                "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Added Conditional Column\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Added Custom\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Product Name\"}),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Removed Columns\", \"Delivery Flag\", each if ([Ship Mode] = \"Standard Class\" or [Ship Mode] = \"First Class\") and ([Arrival Time] >=4 and [Arrival Time]<=7) then \"RED\" else \"Green\"),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Added Custom1\",{\"Order ID\", \"Ship Date\", \"Ship Mode\"})",
+                "in",
+                "    #\"Removed Other Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_5ea63b5e-8ace-49d7-8a2c-acdabea70790",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "bf20b871-0591-45c2-b8c9-cc47de79ff99",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "b8eb0db1-c418-47fb-967f-6311f19ad46a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "41186caa-b365-4a2f-b035-1ec087ccdec5",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "d1076e24-34ec-4ea8-9049-1297371db160",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "37c659e0-84aa-4f0e-980b-ceee7def5551",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "0234efa4-469d-4923-9a6f-5e422dbbe416",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "f342b04b-9f7b-46a8-bb22-b1b333a25890",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "4e866859-f0cd-4e52-9102-8a2777d78ff4",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "367e18e4-4950-4afd-96e3-0a4050a586f8",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "07b5956b-eca6-42e4-86f2-8bc996762d12",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "b2b7381e-63d8-4078-972d-5be38d78f637",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "b6177533-8f5f-4867-b234-c5de74ecfd1b"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "cb156517-59d7-4312-b71e-bc42a77168ef",
+        "partitions": [
+          {
+            "name": "LocalDateTable_5ea63b5e-8ace-49d7-8a2c-acdabea70790",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('DimShippingDetail'[Ship Date])), 1, 1), Date(Year(MAX('DimShippingDetail'[Ship Date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "DimCustomerDetail",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Customer ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "47518696-4796-4d9e-ae73-216ce2ebba3c",
+            "sourceColumn": "Customer ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country/Region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2130ef44-dcee-45cb-b6fa-1564774fed94",
+            "sourceColumn": "Country/Region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4f0b1a83-0872-43b6-8473-0a1a078d93af",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "be75b93a-0321-45dd-b0e4-213b5b7bb0d1",
+        "partitions": [
+          {
+            "name": "DimCustomerDetail",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"G:\\Practice\\POWER BI\\Power Bi Session By BJIT\\Sample - Superstore (1).xlsx\"), null, true),",
+                "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Added Conditional Column\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Added Custom\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Product Name\"}),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Removed Columns\", \"Delivery Flag\", each if ([Ship Mode] = \"Standard Class\" or [Ship Mode] = \"First Class\") and ([Arrival Time] >=4 and [Arrival Time]<=7) then \"RED\" else \"Green\"),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Added Custom1\",{\"Customer ID\", \"Country/Region\", \"City\"})",
+                "in",
+                "    #\"Removed Other Columns\""
               ],
               "type": "m"
             }
