@@ -25,7 +25,17 @@
       "filters": "[]",
       "height": 720.00,
       "name": "ReportSection",
-      "visualContainers": [],
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"df1b867ec04ef890282d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":123.61370716510903,\"y\":103.67601246105919,\"z\":0,\"width\":280.1246105919003,\"height\":280.1246105919003,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Sum of Post Code\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sum of Post Code\"},\"Name\":\"Orders.Sum of Post Code\",\"NativeReferenceName\":\"Sum of Post Code\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sum of Post Code\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 280.12,
+          "width": 280.12,
+          "x": 123.61,
+          "y": 103.68,
+          "z": 0.00
+        }
+      ],
       "width": 1280.00
     },
     {
