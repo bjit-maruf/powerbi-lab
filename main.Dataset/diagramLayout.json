@@ -23,8 +23,8 @@
         },
         {
           "location": {
-            "x": 323,
-            "y": 337
+            "x": 338,
+            "y": 410
           },
           "nodeIndex": "People",
           "nodeLineageTag": "6dc2e57e-b9d7-4b75-94a7-2a158797529b",
@@ -49,13 +49,39 @@
         },
         {
           "location": {
-            "x": 852,
-            "y": 256.5
+            "x": 867,
+            "y": 308.5
           },
           "nodeIndex": "Products List",
           "nodeLineageTag": "279cebea-e7ed-40fc-9fb4-e54b2afdb3df",
           "size": {
-            "height": 128,
+            "height": 137,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1151,
+            "y": 220.5
+          },
+          "nodeIndex": "DimCustomerDetails",
+          "nodeLineageTag": "d328530c-0f0f-43e3-ab8a-77a4abb56d67",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1435,
+            "y": 244.5
+          },
+          "nodeIndex": "DimShippingDetails",
+          "nodeLineageTag": "78766fb2-863a-40cd-b594-e53af3c7f166",
+          "size": {
+            "height": 152,
             "width": 234
           },
           "zIndex": 0
