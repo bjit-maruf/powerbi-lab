@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Orders\",\"People\",\"Returns\",\"Products List\",\"DimShippingDetail\",\"DimCustomerDetail\"]"
+        "value": "[\"Orders\",\"People\",\"Returns\",\"Products List\",\"DimShippingDetail\",\"DimCustomerDetail\",\"Returned Orders\",\"Splitted Country\"]"
       }
     ],
     "culture": "en-US",
@@ -83,6 +83,31 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_5ea63b5e-8ace-49d7-8a2c-acdabea70790"
+      },
+      {
+        "name": "0e2c66f6-6906-427b-92e1-21b9e9b4d553",
+        "fromColumn": "Order ID",
+        "fromTable": "Returned Orders",
+        "toColumn": "Order ID",
+        "toTable": "Returns"
+      },
+      {
+        "name": "a30b8f88-de35-4963-8826-90f6146da258",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Order ID",
+        "fromTable": "Orders",
+        "toCardinality": "many",
+        "toColumn": "Order ID",
+        "toTable": "DimShippingDetail"
+      },
+      {
+        "name": "0a8dbde4-4dd1-4add-8123-54006d5b9d29",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Customer ID",
+        "fromTable": "DimCustomerDetail",
+        "toCardinality": "many",
+        "toColumn": "Customer ID",
+        "toTable": "Orders"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -1606,6 +1631,139 @@
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Added Custom1\",{\"Customer ID\", \"Country/Region\", \"City\"})",
                 "in",
                 "    #\"Removed Other Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Returned Orders",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Order ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c050d5f5-9af6-4b45-80ab-bb2717087f50",
+            "sourceColumn": "Order ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "IsReturned",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c7694a74-3ffa-44eb-bb2e-695cec36694f",
+            "sourceColumn": "IsReturned",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "acb4a8c8-f80b-4d06-982e-650d9a181467",
+        "partitions": [
+          {
+            "name": "Returned Orders",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.NestedJoin(Orders, {\"Order ID\"}, Returns, {\"Order ID\"}, \"Returns\", JoinKind.LeftOuter),",
+                "    #\"Expanded Returns\" = Table.ExpandTableColumn(Source, \"Returns\", {\"Returned\"}, {\"Returns.Returned\"}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Expanded Returns\", each ([Returns.Returned] = \"Yes\")),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"Order ID\", \"Returns.Returned\"}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Other Columns\",{{\"Returns.Returned\", \"IsReturned\"}}),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Renamed Columns\", each true)",
+                "in",
+                "    #\"Filtered Rows1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Splitted Country",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "FIrst Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "306e8b44-3983-4e30-b75d-3fd40db96af9",
+            "sourceColumn": "FIrst Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Last Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "178a1d89-77f4-4d64-97b8-97a5c809d7d9",
+            "sourceColumn": "Last Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "88ac2fb9-54ab-4117-8a2a-70ec321690c1",
+        "partitions": [
+          {
+            "name": "Splitted Country",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"G:\\Practice\\POWER BI\\Power Bi Session By BJIT\\Sample - Superstore (1).xlsx\"), null, true),",
+                "    Orders_Sheet = Source{[Item=\"Orders\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Row ID\", Int64.Type}, {\"Order ID\", type text}, {\"Order Date\", type date}, {\"Ship Date\", type date}, {\"Ship Mode\", type text}, {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Segment\", type text}, {\"Country/Region\", type text}, {\"City\", type text}, {\"State/Province\", type text}, {\"Postal Code\", type text}, {\"Region\", type text}, {\"Product ID\", type text}, {\"Category\", type text}, {\"Sub-Category\", type text}, {\"Product Name\", type text}, {\"Sales\", type number}, {\"Quantity\", Int64.Type}, {\"Discount\", type number}, {\"Profit\", type number}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Changed Type\", \"IsProfitable\", each if [Profit] > 0 then \"Profitable\" else \"Not Profitable\"),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Added Conditional Column\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows1\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Added Custom\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Extracted Days\",{\"Customer Name\", \"State/Province\", \"Postal Code\", \"Product Name\"}),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Removed Columns\", \"Delivery Flag\", each if ([Ship Mode] = \"Standard Class\" or [Ship Mode] = \"First Class\") and ([Arrival Time] >=4 and [Arrival Time]<=7) then \"RED\" else \"Green\"),",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Added Custom1\",{\"Country/Region\"}),",
+                "    #\"Split Column by Delimiter\" = Table.SplitColumn(#\"Removed Other Columns\", \"Country/Region\", Splitter.SplitTextByDelimiter(\" \", QuoteStyle.Csv), {\"Country/Region.1\", \"Country/Region.2\"}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Split Column by Delimiter\",{{\"Country/Region.1\", type text}, {\"Country/Region.2\", type text}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type1\",{{\"Country/Region.1\", \"FIrst Name\"}, {\"Country/Region.2\", \"Last Name\"}})",
+                "in",
+                "    #\"Renamed Columns\""
               ],
               "type": "m"
             }
