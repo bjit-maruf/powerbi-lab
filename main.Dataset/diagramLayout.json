@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 841.5999755859375,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 568,
-            "y": 50
+            "x": 608,
+            "y": 267
           },
           "nodeIndex": "DimCustomerInfo",
           "nodeLineageTag": "545c1b5f-ccef-4daa-a372-2db7b331aa3a",
@@ -19,12 +19,12 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 294,
-            "y": -10
+            "x": 318,
+            "y": 0
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "528281e6-a03c-435c-83e3-1c6f9364ea3c",
@@ -32,20 +32,20 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 10,
-            "y": 76
+            "x": 0,
+            "y": 78
           },
           "nodeIndex": "People",
           "nodeLineageTag": "2f074187-ce9f-4fa9-b17f-146212acb06b",
           "size": {
-            "height": 128,
+            "height": 124,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 6
         },
         {
           "location": {
@@ -58,7 +58,33 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1080,
+            "y": 262
+          },
+          "nodeIndex": "CustomerName",
+          "nodeLineageTag": "9364536c-4e2d-4b6a-a47d-3b4cb254dad7",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1410,
+            "y": 86
+          },
+          "nodeIndex": "ReturnedOrders",
+          "nodeLineageTag": "4359364f-bc29-474c-808c-81e90fc687de",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
         }
       ],
       "name": "All tables",
