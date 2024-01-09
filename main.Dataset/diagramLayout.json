@@ -7,7 +7,86 @@
         "x": 0,
         "y": 0
       },
-      "nodes": [],
+      "nodes": [
+        {
+          "location": {
+            "x": 634,
+            "y": 0
+          },
+          "nodeIndex": "Orders",
+          "nodeLineageTag": "3b44378c-3bdd-4fb9-8bd8-38d6ddc1d417",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 359,
+            "y": 370
+          },
+          "nodeIndex": "People",
+          "nodeLineageTag": "3b5b0869-5b30-4d24-8484-86f72edf952b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 923,
+            "y": 0
+          },
+          "nodeIndex": "Returns",
+          "nodeLineageTag": "a79275b6-1eb1-45a3-b5ce-a23527dba347",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 180,
+            "y": 0
+          },
+          "nodeIndex": "DimCustomerInfo",
+          "nodeLineageTag": "fd7cff2e-2d2d-4fdc-bf85-8cdb7de81a3b",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1055,
+            "y": 308
+          },
+          "nodeIndex": "DimShippingDetail",
+          "nodeLineageTag": "2f3b54c5-b540-4291-a4af-f48cc5222b50",
+          "size": {
+            "height": 155,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1178.7999954223633,
+            "y": 0
+          },
+          "nodeIndex": "Splited Country",
+          "nodeLineageTag": "95146c4e-e0a9-459b-aa68-2484bd10057c",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
       "name": "All tables",
       "zoomValue": 100,
       "pinKeyFieldsToTop": false,
