@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 294.18475118062975,
-            "y": -10
+            "x": 543.14720761010074,
+            "y": 231.13263979141678
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "66ac8fc8-9cad-4ccf-b555-7c34a00ed3cf",
@@ -19,25 +19,25 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 6
         },
         {
           "location": {
-            "x": 10,
-            "y": 57.065109177341483
+            "x": 151.54855808589343,
+            "y": 73.957602760174638
           },
           "nodeIndex": "People",
           "nodeLineageTag": "3923c36c-9dee-4763-927f-83394a2c4650",
           "size": {
-            "height": 128,
+            "height": 181.55465959507805,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 578.36163941535972,
-            "y": 89.324992632434316
+            "x": 141.86077059326925,
+            "y": 679.06494143615646
           },
           "nodeIndex": "Returns",
           "nodeLineageTag": "71a639ed-9bcb-4d52-ba26-6423a89d6769",
@@ -45,24 +45,89 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 852.36163941535972,
-            "y": 86
+            "x": 1305.5131126442989,
+            "y": 241.30481857058828
           },
-          "nodeIndex": "Products List",
-          "nodeLineageTag": "c6427559-03f6-42bb-b705-1553a4cfa87b",
+          "nodeIndex": "DimCustomerDetails",
+          "nodeLineageTag": "8dd01f33-aa06-4514-b0dd-afd09aaf006c",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 997.44004992028863,
+            "y": 545.32843312887212
+          },
+          "nodeIndex": "DimShippingDetails",
+          "nodeLineageTag": "6154f609-bc1c-4ff6-8e68-70b8d87fe87d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 927.56321082214959,
+            "y": 73.634640699399782
+          },
+          "nodeIndex": "ProductList",
+          "nodeLineageTag": "2ec8edf0-c7d6-4045-becd-df820072bda2",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 738.68720557058793,
+            "y": 894.01452891416625
+          },
+          "nodeIndex": "SplittedCountry",
+          "nodeLineageTag": "4778094d-0c9d-45f4-a27d-862e64cc71cc",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1463.0370286976522,
+            "y": 594.2696506319935
+          },
+          "nodeIndex": "ReturnedOrders",
+          "nodeLineageTag": "85dea6fb-36b9-430c-b791-d51951b107f7",
           "size": {
             "height": 128,
             "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 418.51774812923207,
+            "y": 873.79409468088284
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "ac6f3a29-cef0-4934-a2e8-6c02e410be9e",
+          "size": {
+            "height": 157.72000558283321,
+            "width": 226.95333426380546
           },
           "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 70.955543900968777,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
