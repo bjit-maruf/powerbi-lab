@@ -668,6 +668,63 @@
             "expression": "SUM(Orders[Quantity])",
             "formatString": "0",
             "lineageTag": "414db567-0d1f-401e-9077-a7b4ed5a1d23"
+          },
+          {
+            "name": "Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Sales]) ",
+            "lineageTag": "7b043bd7-917b-476d-a7f9-9b2455b75a70"
+          },
+          {
+            "name": "Total Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Profit])",
+            "lineageTag": "28c23c70-1bb2-471e-a559-915d08172fd3"
+          },
+          {
+            "name": "Profit Margin",
+            "expression": "DIVIDE(SUM(Orders[Profit]),SUM(Orders[Sales]))",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "6b151bb2-1d99-4046-b762-157dae1dbd93"
+          },
+          {
+            "name": "Profit Margin2",
+            "expression": "[Total Profit] / [Total Sales]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "75bf21d4-2a16-4daa-8d56-cc8a34f29820"
+          },
+          {
+            "name": "Actual Price",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total Sales] - [Total Profit]",
+            "lineageTag": "00c140fe-7408-404c-80cd-3b071d30c0eb"
+          },
+          {
+            "name": "Product Count",
+            "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Product ID] <> BLANK()))",
+            "formatString": "0",
+            "lineageTag": "3b7667af-0429-4955-9ca2-ed7eea5bdb95"
+          },
+          {
+            "name": "Product Sold Quantity Wise",
+            "expression": "SUM(Orders[Quantity])",
+            "formatString": "0",
+            "lineageTag": "6b96977f-a6b6-4e40-bd0e-4a1ea012e487"
           }
         ],
         "partitions": [

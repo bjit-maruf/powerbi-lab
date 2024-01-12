@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.44\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU11\",\"version\":\"5.49\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.44\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU11\",\"version\":\"5.49\",\"type\":2}},\"activeSectionIndex\":2,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -40,7 +40,109 @@
     },
     {
       "config": "{}",
-      "displayName": "Khalid Page",
+      "displayName": "Measure ",
+      "displayOption": 3,
+      "filters": "[]",
+      "height": 1000.00,
+      "name": "ReportSection27da4e142b51edc5ca06",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"031d598c982628932770\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.85714285714286,\"y\":234.2857142857143,\"z\":4,\"width\":442.8571428571429,\"height\":232.85714285714286,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Category\"},{\"queryRef\":\"Orders.Total Sales\"},{\"queryRef\":\"Orders.Total Profit\"},{\"queryRef\":\"Orders.Profit Margin\"},{\"queryRef\":\"Orders.Actual Price\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Category\"},\"Name\":\"Orders.Category\",\"NativeReferenceName\":\"Category\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Sales\"},\"Name\":\"Orders.Total Sales\",\"NativeReferenceName\":\"Total Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Profit\"},\"Name\":\"Orders.Total Profit\",\"NativeReferenceName\":\"Total Profit\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Profit Margin\"},\"Name\":\"Orders.Profit Margin\",\"NativeReferenceName\":\"Profit Margin\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Actual Price\"},\"Name\":\"Orders.Actual Price\",\"NativeReferenceName\":\"Actual Price\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 232.86,
+          "width": 442.86,
+          "x": 32.86,
+          "y": 234.29,
+          "z": 4.00
+        },
+        {
+          "config": "{\"name\":\"11b6dc09606c0ec5cc1b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.85714285714286,\"y\":635.7142857142858,\"z\":8,\"width\":730,\"height\":297.14285714285717,\"tabOrder\":5}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Products List.Product Name\"},{\"queryRef\":\"Orders.Product Count\"},{\"queryRef\":\"Orders.Product ID\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Products List\",\"Type\":0},{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Product Name\"},\"Name\":\"Products List.Product Name\",\"NativeReferenceName\":\"Product Name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Product Count\"},\"Name\":\"Orders.Product Count\",\"NativeReferenceName\":\"Product Count\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Product ID\"},\"Name\":\"Orders.Product ID\",\"NativeReferenceName\":\"Product ID\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 297.14,
+          "width": 730.00,
+          "x": 32.86,
+          "y": 635.71,
+          "z": 8.00
+        },
+        {
+          "config": "{\"name\":\"1b80800e0d30d92be0c0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":390.76512116008394,\"y\":26.998317461969435,\"z\":1,\"width\":233.0381086191046,\"height\":149.20122807930477}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Total Profit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Profit\"},\"Name\":\"Orders.Total Profit\",\"NativeReferenceName\":\"Total Profit\"}]},\"autoSelectVisualType\":true,\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 149.20,
+          "width": 233.04,
+          "x": 390.77,
+          "y": 27.00,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"32569db04b80210e5d19\",\"layouts\":[{\"id\":0,\"position\":{\"x\":591.4285714285714,\"y\":234.2857142857143,\"z\":5,\"width\":311.42857142857144,\"height\":232.85714285714286,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Sub-Category\"},{\"queryRef\":\"Sum(Orders.Sales)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sub-Category\"},\"Name\":\"Orders.Sub-Category\",\"NativeReferenceName\":\"Sub-Category\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sales\"}},\"Function\":0},\"Name\":\"Sum(Orders.Sales)\",\"NativeReferenceName\":\"Sum of Sales\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 232.86,
+          "width": 311.43,
+          "x": 591.43,
+          "y": 234.29,
+          "z": 5.00
+        },
+        {
+          "config": "{\"name\":\"4208ed846c4e641cdab1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.85714285714286,\"y\":420,\"z\":7,\"width\":311.42857142857144,\"height\":180,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"People.Regional Manager\"},{\"queryRef\":\"Orders.Total Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"People\",\"Type\":0},{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Regional Manager\"},\"Name\":\"People.Regional Manager\",\"NativeReferenceName\":\"Regional Manager\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Sales\"},\"Name\":\"Orders.Total Sales\",\"NativeReferenceName\":\"Total Sales\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 180.00,
+          "width": 311.43,
+          "x": 32.86,
+          "y": 420.00,
+          "z": 7.00
+        },
+        {
+          "config": "{\"name\":\"aa540ad9374516931900\",\"layouts\":[{\"id\":0,\"position\":{\"x\":747.4271044734696,\"y\":26.59893150162182,\"width\":233.0381086191046,\"height\":150,\"z\":2}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Profit Margin\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Profit Margin\"},\"Name\":\"Orders.Profit Margin\",\"NativeReferenceName\":\"Profit Margin\"}]},\"autoSelectVisualType\":true,\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 150.00,
+          "width": 233.04,
+          "x": 747.43,
+          "y": 26.60,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"bfb126400b770de6e209\",\"layouts\":[{\"id\":0,\"position\":{\"x\":965.7142857142858,\"y\":234.2857142857143,\"z\":6,\"width\":272.8571428571429,\"height\":232.85714285714286,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.City\"},{\"queryRef\":\"Orders.Total Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"City\"},\"Name\":\"Orders.City\",\"NativeReferenceName\":\"City\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Sales\"},\"Name\":\"Orders.Total Sales\",\"NativeReferenceName\":\"Total Sales\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 232.86,
+          "width": 272.86,
+          "x": 965.71,
+          "y": 234.29,
+          "z": 6.00
+        },
+        {
+          "config": "{\"name\":\"d5a127445d0148246ac0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":802.8571428571429,\"y\":572.8571428571429,\"z\":9,\"width\":354.28571428571433,\"height\":211.42857142857144,\"tabOrder\":6}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Products List.Product ID\"},{\"queryRef\":\"Orders.qunatity\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Products List\",\"Type\":0},{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Product ID\"},\"Name\":\"Products List.Product ID\",\"NativeReferenceName\":\"Product ID\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Product Sold Quantity Wise\"},\"Name\":\"Orders.qunatity\",\"NativeReferenceName\":\"Product Sold Quantity Wise\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 211.43,
+          "width": 354.29,
+          "x": 802.86,
+          "y": 572.86,
+          "z": 9.00
+        },
+        {
+          "config": "{\"name\":\"eb8cf700b70859557981\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1020.2522072470555,\"y\":25.577353385023674,\"z\":3,\"width\":233.0381086191046,\"height\":150.62219215625052}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Profit Margin2\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Profit Margin2\"},\"Name\":\"Orders.Profit Margin2\",\"NativeReferenceName\":\"Profit Margin2\"}]},\"autoSelectVisualType\":true,\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 150.62,
+          "width": 233.04,
+          "x": 1020.25,
+          "y": 25.58,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"fb9a58eca44b7e2d5307\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.682173769752474,\"y\":53.99663492393887,\"z\":0,\"width\":264.2993183119113,\"height\":103.73037761704046}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Total Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Sales\"},\"Name\":\"Orders.Total Sales\",\"NativeReferenceName\":\"Total Sales\"}]},\"autoSelectVisualType\":true,\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 103.73,
+          "width": 264.30,
+          "x": 32.68,
+          "y": 54.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 2",
       "displayOption": 1,
       "filters": "[]",
       "height": 720.00,
