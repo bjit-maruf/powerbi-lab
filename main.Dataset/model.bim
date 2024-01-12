@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.124.1052.0 (23.12)"
+        "value": "2.124.1554.0 (23.12)"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -593,6 +593,60 @@
           }
         ],
         "lineageTag": "cff23dac-5d55-4574-9028-cb540f4fa9f5",
+        "measures": [
+          {
+            "name": "Total Sales",
+            "expression": "SUM(Orders[Sales])",
+            "formatString": "0.00",
+            "lineageTag": "47213c0e-68d2-43cc-97a2-62c6a66ba2e4"
+          },
+          {
+            "name": "Total Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Profit])",
+            "lineageTag": "25573620-5037-474f-8a24-d770036d99a0"
+          },
+          {
+            "name": "Profit Margin",
+            "expression": "DIVIDE(SUM(Orders[Profit]),SUM(Orders[Sales]))",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "7c250480-7109-4097-a9d5-dac365f03ba1"
+          },
+          {
+            "name": "profit margin 2",
+            "expression": "[Total Profit]/[Total Sales]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "afc851ee-6493-4226-97cf-af96711d5a7a"
+          },
+          {
+            "name": "Actual Price",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total Sales] - [Total Profit]",
+            "lineageTag": "2da5fd9a-cf53-4a37-b513-7fb038e12554"
+          },
+          {
+            "name": "Products Count",
+            "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Product ID] <> BLANK()))",
+            "formatString": "0",
+            "lineageTag": "4ab84d0d-7ac0-47a8-a2c8-a637bb091566"
+          },
+          {
+            "name": "TotalQn",
+            "expression": "SUM(Orders[Quantity])",
+            "formatString": "0",
+            "lineageTag": "1c22a1aa-27a4-40d0-851b-0d8a3469e819"
+          }
+        ],
         "partitions": [
           {
             "name": "Orders",
