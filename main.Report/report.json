@@ -48,12 +48,12 @@
       "ordinal": 2,
       "visualContainers": [
         {
-          "config": "{\"name\":\"031d598c982628932770\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.85714285714286,\"y\":234.2857142857143,\"z\":4,\"width\":442.8571428571429,\"height\":232.85714285714286,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Category\"},{\"queryRef\":\"Orders.Total Sales\"},{\"queryRef\":\"Orders.Total Profit\"},{\"queryRef\":\"Orders.Profit Margin\"},{\"queryRef\":\"Orders.Actual Price\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Category\"},\"Name\":\"Orders.Category\",\"NativeReferenceName\":\"Category\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Sales\"},\"Name\":\"Orders.Total Sales\",\"NativeReferenceName\":\"Total Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Profit\"},\"Name\":\"Orders.Total Profit\",\"NativeReferenceName\":\"Total Profit\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Profit Margin\"},\"Name\":\"Orders.Profit Margin\",\"NativeReferenceName\":\"Profit Margin\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Actual Price\"},\"Name\":\"Orders.Actual Price\",\"NativeReferenceName\":\"Actual Price\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"031d598c982628932770\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":182.22222222222223,\"z\":4,\"width\":640,\"height\":168.88888888888889,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Category\"},{\"queryRef\":\"Orders.Total Sales\"},{\"queryRef\":\"Orders.Total Profit\"},{\"queryRef\":\"Orders.Profit Margin\"},{\"queryRef\":\"Orders.Actual Price\"},{\"queryRef\":\"Orders.TotalDistinctCategory\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Category\"},\"Name\":\"Orders.Category\",\"NativeReferenceName\":\"Category\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Sales\"},\"Name\":\"Orders.Total Sales\",\"NativeReferenceName\":\"Total Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Total Profit\"},\"Name\":\"Orders.Total Profit\",\"NativeReferenceName\":\"Total Profit\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Profit Margin\"},\"Name\":\"Orders.Profit Margin\",\"NativeReferenceName\":\"Profit Margin\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Actual Price\"},\"Name\":\"Orders.Actual Price\",\"NativeReferenceName\":\"Actual Price\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"TotalDistinctCategory\"},\"Name\":\"Orders.TotalDistinctCategory\",\"NativeReferenceName\":\"TotalDistinctCategory\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Actual Price\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"115.55554048515299D\"}}}},\"selector\":{\"metadata\":\"Orders.Actual Price\"}}]}}}",
           "filters": "[]",
-          "height": 232.86,
-          "width": 442.86,
-          "x": 32.86,
-          "y": 234.29,
+          "height": 168.89,
+          "width": 640.00,
+          "x": 0.00,
+          "y": 182.22,
           "z": 4.00
         },
         {
@@ -75,12 +75,12 @@
           "z": 1.00
         },
         {
-          "config": "{\"name\":\"32569db04b80210e5d19\",\"layouts\":[{\"id\":0,\"position\":{\"x\":591.4285714285714,\"y\":234.2857142857143,\"z\":5,\"width\":311.42857142857144,\"height\":232.85714285714286,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Sub-Category\"},{\"queryRef\":\"Sum(Orders.Sales)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sub-Category\"},\"Name\":\"Orders.Sub-Category\",\"NativeReferenceName\":\"Sub-Category\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sales\"}},\"Function\":0},\"Name\":\"Sum(Orders.Sales)\",\"NativeReferenceName\":\"Sum of Sales\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"32569db04b80210e5d19\",\"layouts\":[{\"id\":0,\"position\":{\"x\":675.5555555555555,\"y\":242.22222222222223,\"z\":5,\"width\":227.77777777777777,\"height\":224.44444444444443,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Orders.Sub-Category\"},{\"queryRef\":\"Sum(Orders.Sales)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sub-Category\"},\"Name\":\"Orders.Sub-Category\",\"NativeReferenceName\":\"Sub-Category\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Sales\"}},\"Function\":0},\"Name\":\"Sum(Orders.Sales)\",\"NativeReferenceName\":\"Sum of Sales\"}]},\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
-          "height": 232.86,
-          "width": 311.43,
-          "x": 591.43,
-          "y": 234.29,
+          "height": 224.44,
+          "width": 227.78,
+          "x": 675.56,
+          "y": 242.22,
           "z": 5.00
         },
         {
@@ -111,12 +111,12 @@
           "z": 6.00
         },
         {
-          "config": "{\"name\":\"d5a127445d0148246ac0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":802.8571428571429,\"y\":572.8571428571429,\"z\":9,\"width\":354.28571428571433,\"height\":211.42857142857144,\"tabOrder\":6}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Products List.Product ID\"},{\"queryRef\":\"Orders.qunatity\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Products List\",\"Type\":0},{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Product ID\"},\"Name\":\"Products List.Product ID\",\"NativeReferenceName\":\"Product ID\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Product Sold Quantity Wise\"},\"Name\":\"Orders.qunatity\",\"NativeReferenceName\":\"Product Sold Quantity Wise\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"d5a127445d0148246ac0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":804.4444444444445,\"y\":647.7777777777777,\"z\":9,\"width\":353.3333333333333,\"height\":242.22222222222223,\"tabOrder\":6}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Products List.Product ID\"},{\"queryRef\":\"Orders.qunatity\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Products List\",\"Type\":0},{\"Name\":\"o\",\"Entity\":\"Orders\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Product ID\"},\"Name\":\"Products List.Product ID\",\"NativeReferenceName\":\"Product ID\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"o\"}},\"Property\":\"Product Sold Quantity Wise\"},\"Name\":\"Orders.qunatity\",\"NativeReferenceName\":\"Product Sold Quantity Wise\"}]},\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
-          "height": 211.43,
-          "width": 354.29,
-          "x": 802.86,
-          "y": 572.86,
+          "height": 242.22,
+          "width": 353.33,
+          "x": 804.44,
+          "y": 647.78,
           "z": 9.00
         },
         {

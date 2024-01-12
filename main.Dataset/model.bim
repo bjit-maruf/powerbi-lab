@@ -725,6 +725,12 @@
             "expression": "SUM(Orders[Quantity])",
             "formatString": "0",
             "lineageTag": "6b96977f-a6b6-4e40-bd0e-4a1ea012e487"
+          },
+          {
+            "name": "TotalDistinctCategory",
+            "expression": "DISTINCTCOUNT(Orders[Category])",
+            "formatString": "0",
+            "lineageTag": "6d9d5f39-61b9-4680-84c1-492d92bb260e"
           }
         ],
         "partitions": [
