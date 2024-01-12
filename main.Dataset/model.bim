@@ -321,10 +321,6 @@
         "name": "Orders",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1112,10 +1108,6 @@
         "name": "People",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1172,10 +1164,6 @@
       {
         "name": "Returns",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1234,10 +1222,6 @@
       {
         "name": "Products List",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1307,10 +1291,6 @@
       {
         "name": "DimShipping details",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1609,10 +1589,6 @@
         "name": "DimCustomer Details",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1700,6 +1676,79 @@
           }
         ],
         "lineageTag": "2f5745bc-4cf6-4910-8d9e-7b86ebdb3ee5",
+        "measures": [
+          {
+            "name": "Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Sales])",
+            "lineageTag": "fa52bdaa-523d-449b-96b1-5113baaa59b5"
+          },
+          {
+            "name": "Total Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM('Orders'[Profit] )",
+            "lineageTag": "aa2cb9a4-e145-4278-a489-0e49ee1b8ddc"
+          },
+          {
+            "name": "Profit Margin",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE(SUM(Orders[Profit]),SUM(Orders[Sales]))",
+            "lineageTag": "86e909b6-09c5-48d4-a0de-ca7fd2eed7c0"
+          },
+          {
+            "name": "Proft margin 2",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total Profit]/[Total Sales]",
+            "lineageTag": "e54d9f5b-5fec-440f-877b-5412c916a7b0"
+          },
+          {
+            "name": "Actual Price",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total Sales]-[Total Profit]",
+            "lineageTag": "b8a2a30e-ded2-44f9-a290-33a2473b206f"
+          },
+          {
+            "name": "Measure",
+            "annotations": [
+              {
+                "name": "43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c",
+                "value": "True"
+              }
+            ],
+            "lineageTag": "e9a696f3-447c-4e38-b00a-f2ffbaa7aeca"
+          },
+          {
+            "name": "Product Count",
+            "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Product ID] <> BLANK()))",
+            "formatString": "0",
+            "lineageTag": "acb49f39-f1d3-472c-90a3-c2426ff6266e"
+          }
+        ],
         "partitions": [
           {
             "name": "DimCustomer Details",
@@ -1732,10 +1781,6 @@
       {
         "name": "Returned Orders",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -2252,10 +2297,6 @@
       {
         "name": "Spilted Country",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
