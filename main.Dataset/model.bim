@@ -697,6 +697,53 @@
           }
         ],
         "lineageTag": "66ac8fc8-9cad-4ccf-b555-7c34a00ed3cf",
+        "measures": [
+          {
+            "name": "Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Sales])",
+            "lineageTag": "5f146eda-d8d0-4646-b9c1-e5e2f7192bf3"
+          },
+          {
+            "name": "Total Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Profit])",
+            "lineageTag": "c15d4465-9561-4367-8a3f-39bfe36c8f28"
+          },
+          {
+            "name": "Profit margin",
+            "expression": "DIVIDE(Orders[Total Profit],Orders[Total Sales])",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "e6547869-397b-4199-becc-b4d6ce7b4653"
+          },
+          {
+            "name": "Actual Price",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total Sales]-[Total Profit]",
+            "lineageTag": "0075dd66-e4ae-4dbd-8330-bf06159b28c0"
+          },
+          {
+            "name": "Products Count",
+            "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Order ID]<>BLANK()))",
+            "formatString": "0",
+            "lineageTag": "2f551951-ae8b-4d02-922d-e8bdc16676d6"
+          }
+        ],
         "partitions": [
           {
             "name": "Orders",
