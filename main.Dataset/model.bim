@@ -631,6 +631,42 @@
           }
         ],
         "lineageTag": "528281e6-a03c-435c-83e3-1c6f9364ea3c",
+        "measures": [
+          {
+            "name": "Profit Margin",
+            "expression": "[Total Profit]/[Total Sales]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "c222b23c-9730-4dbd-bf0e-f9296a234e6e"
+          },
+          {
+            "name": "Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Sales])",
+            "lineageTag": "43604d9d-43af-49bd-bdc7-a8fc0beb58e6"
+          },
+          {
+            "name": "Total Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "SUM(Orders[Profit])",
+            "lineageTag": "1acd9bfe-2a68-4eca-8ca2-cfc86d73bc85"
+          },
+          {
+            "name": "Products Count",
+            "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Product ID] <> BLANK()))",
+            "formatString": "0",
+            "lineageTag": "0b22d8ac-1101-4336-9584-e2a48e27b316"
+          }
+        ],
         "partitions": [
           {
             "name": "Orders",
