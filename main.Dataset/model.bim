@@ -70,13 +70,6 @@
         "toTable": "People"
       },
       {
-        "name": "7b8b8a1e-4105-4b30-a355-062e689b329e",
-        "fromColumn": "Product ID",
-        "fromTable": "Orders",
-        "toColumn": "Product ID",
-        "toTable": "Products List"
-      },
-      {
         "name": "74587cc1-101a-43f1-ab15-71f5aaae6ea8",
         "fromColumn": "Ship Date",
         "fromTable": "DimShippingDetail",
@@ -116,6 +109,13 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_7a1c90b3-69b3-4b04-96cb-11c88aea3dbd"
+      },
+      {
+        "name": "002b97f4-83a3-4129-bea5-f351c66b1cb1",
+        "fromColumn": "Product ID",
+        "fromTable": "Orders",
+        "toColumn": "Product ID",
+        "toTable": "Products List"
       }
     ],
     "sourceQueryCulture": "en-GB",
@@ -1165,10 +1165,6 @@
         "name": "People",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1225,10 +1221,6 @@
       {
         "name": "Returns",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1287,10 +1279,6 @@
       {
         "name": "Products List",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1355,10 +1343,6 @@
       {
         "name": "DimShippingDetail",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1654,10 +1638,6 @@
         "name": "DimCustomerDetail",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1735,10 +1715,6 @@
         "name": "Returned Orders",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1796,10 +1772,6 @@
       {
         "name": "Splitted Country",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
