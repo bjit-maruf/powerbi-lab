@@ -494,6 +494,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "City",
             "dataType": "string",
             "lineageTag": "e4c994f9-1463-438d-ac66-71869fd2b9a0",
             "sourceColumn": "City",
