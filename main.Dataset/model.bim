@@ -731,6 +731,42 @@
             "expression": "DISTINCTCOUNT(Orders[Category])",
             "formatString": "0",
             "lineageTag": "6d9d5f39-61b9-4680-84c1-492d92bb260e"
+          },
+          {
+            "name": "1_Nume",
+            "expression": "COUNT(Orders[Customer ID]) ",
+            "formatString": "0",
+            "lineageTag": "b1ac9884-b2ff-4a7c-9f4e-296b066ab06a"
+          },
+          {
+            "name": "2_Deno",
+            "expression": "CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Category]))",
+            "formatString": "0",
+            "lineageTag": "bcde0850-554f-4040-a4d2-e73d2f3e0b85"
+          },
+          {
+            "name": "2_Deno_SubCategory",
+            "expression": "CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Sub-Category]))",
+            "formatString": "0",
+            "lineageTag": "814789f3-c1ba-4efb-b521-242a094e756f"
+          },
+          {
+            "name": "3_Perc_SubCategory",
+            "expression": "[1_Nume]/[2_Deno_SubCategory]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "21785c9d-f039-42df-9385-b7902ed94a49"
+          },
+          {
+            "name": "Perc_Category",
+            "expression": "DIVIDE(COUNT(Orders[Customer ID]),CALCULATE(COUNT(Orders[Category]),ALL(Orders[Category])))",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "df9477e8-502e-4742-8e2b-0f9798d3b6f8"
+          },
+          {
+            "name": "Perc_SubCategory",
+            "expression": "DIVIDE(COUNT(Orders[Customer ID]), CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Sub-Category])))",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "76dfc8e4-acc8-4fe3-a3ae-5a42f9c159a8"
           }
         ],
         "partitions": [
@@ -1890,6 +1926,14 @@
           }
         ],
         "lineageTag": "e6f37149-3fcc-4c59-beca-c9bba9680c9b",
+        "measures": [
+          {
+            "name": "3_Perc_Category",
+            "expression": "[1_Nume] / [2_Deno]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "7503460b-21f0-4cf6-aa29-86e523692942"
+          }
+        ],
         "partitions": [
           {
             "name": "Date",
