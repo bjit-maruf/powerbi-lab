@@ -645,6 +645,24 @@
             "expression": "SUM(Orders[Quantity])",
             "formatString": "0",
             "lineageTag": "1c22a1aa-27a4-40d0-851b-0d8a3469e819"
+          },
+          {
+            "name": "Nume",
+            "expression": "COUNT(Orders[Customer ID])",
+            "formatString": "0",
+            "lineageTag": "63f56bd3-3818-4722-bccc-4a389275bbb4"
+          },
+          {
+            "name": "Deno",
+            "expression": "CALCULATE([Nume],ALL(Orders[Category]))",
+            "formatString": "0",
+            "lineageTag": "4d21a203-0754-416a-a245-3304fcd720ed"
+          },
+          {
+            "name": "Perc",
+            "expression": "[Nume]/[Deno]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "0678d230-9b35-48e1-8fb2-9445dce09fa3"
           }
         ],
         "partitions": [
