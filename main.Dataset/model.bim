@@ -674,6 +674,29 @@
           }
         ],
         "lineageTag": "d97cdedf-bfe4-49b8-b1f9-c54d0e0a1f9e",
+        "measures": [
+          {
+            "name": "1_Nume",
+            "expression": "COUNT(Orders[Customer ID])",
+            "formatString": "0",
+            "lineageTag": "114be0e1-b603-46c6-89fa-364cf060441e"
+          },
+          {
+            "name": "2_Deno",
+            "expression": [
+              "CALCULATE(COUNT(Orders[Customer ID]),",
+              "ALL(Orders[Category]))"
+            ],
+            "formatString": "0",
+            "lineageTag": "8959a61b-cc94-4373-950f-c10eaa88ef85"
+          },
+          {
+            "name": "3_Perc_Catg",
+            "expression": "[1_Nume]/[2_Deno]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "15042d94-44f7-4d0f-a9b5-5e1451f67e1c"
+          }
+        ],
         "partitions": [
           {
             "name": "Orders",
