@@ -666,6 +666,24 @@
             "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Product ID] <> BLANK()))",
             "formatString": "0",
             "lineageTag": "0b22d8ac-1101-4336-9584-e2a48e27b316"
+          },
+          {
+            "name": "1_nume",
+            "expression": "COUNT(Orders[Category])",
+            "formatString": "0",
+            "lineageTag": "75345c23-2acd-4ef9-8cbe-a7db48ca7070"
+          },
+          {
+            "name": "2_Deme",
+            "expression": "CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Category]))",
+            "formatString": "0",
+            "lineageTag": "c9d3c485-5d6d-4703-b8c1-a96cec5636d0"
+          },
+          {
+            "name": "3_percentage",
+            "expression": "[1_nume]/[2_Deme]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "bf450a42-a3ba-4dda-827f-3509aa8e79a7"
           }
         ],
         "partitions": [
