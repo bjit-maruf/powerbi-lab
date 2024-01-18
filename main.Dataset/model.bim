@@ -647,22 +647,50 @@
             "lineageTag": "1c22a1aa-27a4-40d0-851b-0d8a3469e819"
           },
           {
-            "name": "Nume",
+            "name": "1_Nume",
             "expression": "COUNT(Orders[Customer ID])",
             "formatString": "0",
-            "lineageTag": "63f56bd3-3818-4722-bccc-4a389275bbb4"
+            "lineageTag": "4fea7488-4a64-4616-b74c-f4cfac0e567e"
           },
           {
-            "name": "Deno",
-            "expression": "CALCULATE([Nume],ALL(Orders[Category]))",
+            "name": "2_Deno",
+            "expression": "CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Category]))",
             "formatString": "0",
-            "lineageTag": "4d21a203-0754-416a-a245-3304fcd720ed"
+            "lineageTag": "a3a2edb4-4094-4c1c-ac72-d4684507b8b1"
           },
           {
-            "name": "Perc",
-            "expression": "[Nume]/[Deno]",
+            "name": "3_Perc_Catg",
+            "expression": "[1_Nume]/[2_Deno]",
             "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "0678d230-9b35-48e1-8fb2-9445dce09fa3"
+            "lineageTag": "92cb572b-d1b1-4ecb-b107-eb12286e93af"
+          },
+          {
+            "name": "2_Deno_SubC",
+            "expression": "CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Sub-Category]))",
+            "formatString": "0",
+            "lineageTag": "10c3f382-ad28-44d7-b32f-ca0c141a70d7"
+          },
+          {
+            "name": "3_Perc_SubCatg",
+            "expression": "[1_Nume]/[2_Deno_SubC]",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "136015c4-83eb-433a-a50d-88710953f1ef"
+          },
+          {
+            "name": "PercF",
+            "expression": [
+              "DIVIDE(COUNT(Orders[Customer ID]),",
+              "                CALCULATE(COUNT(Orders[Customer ID]),",
+              "                                ALL(Orders[Category])))"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "7359a400-877b-4f9a-a362-320e48d1a892"
+          },
+          {
+            "name": "PercF_Sub",
+            "expression": "DIVIDE(COUNT(Orders[Customer ID]),CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Sub-Category])))",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "81fc442a-503b-46fb-9e82-b23a0f7957d6"
           }
         ],
         "partitions": [
