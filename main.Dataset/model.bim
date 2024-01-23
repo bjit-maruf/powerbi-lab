@@ -1736,13 +1736,8 @@
           },
           {
             "name": "Proft margin 2",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
             "expression": "[Total Profit]/[Total Sales]",
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "e54d9f5b-5fec-440f-877b-5412c916a7b0"
           },
           {
