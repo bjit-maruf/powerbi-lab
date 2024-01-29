@@ -11300,6 +11300,12 @@
             "expression": "DIVIDE(COUNT(Orders[Customer ID]), CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Sub-Category])))",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "76dfc8e4-acc8-4fe3-a3ae-5a42f9c159a8"
+          },
+          {
+            "name": "Last Year Sales",
+            "expression": "80000",
+            "formatString": "0",
+            "lineageTag": "cb22a4f8-d545-45c7-8a92-81f5f94557b9"
           }
         ],
         "partitions": [
