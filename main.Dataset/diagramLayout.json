@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 346.66665159625768,
+        "x": 0,
         "y": 0
       },
       "nodes": [
@@ -88,7 +88,7 @@
         },
         {
           "location": {
-            "x": 1306.8644604301091,
+            "x": 1306.8644604301092,
             "y": 649.86509515564774
           },
           "nodeIndex": "Returned Orders",
@@ -126,7 +126,7 @@
         }
       ],
       "name": "All tables",
-      "zoomValue": 81,
+      "zoomValue": 64.438077450536838,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
