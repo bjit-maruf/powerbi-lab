@@ -1934,6 +1934,23 @@
           }
         ],
         "lineageTag": "ac6f3a29-cef0-4934-a2e8-6c02e410be9e",
+        "measures": [
+          {
+            "name": "ShareTest",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR numerator=COUNT(Orders[Customer ID]) RETURN",
+              "DIVIDE(numerator, CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Category])))"
+            ],
+            "lineageTag": "b9dc743a-6b80-4116-a1fa-ce357ceb9ca3"
+          }
+        ],
         "partitions": [
           {
             "name": "Date",
