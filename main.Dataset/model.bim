@@ -1766,6 +1766,21 @@
             "expression": "CALCULATE(COUNT(Orders[Product ID]),FILTER(Orders,Orders[Product ID] <> BLANK()))",
             "formatString": "0",
             "lineageTag": "acb49f39-f1d3-472c-90a3-c2426ff6266e"
+          },
+          {
+            "name": "ShareTest",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    VAR numerator = COUNT(Orders[Customer ID]) RETURN",
+              "    DIVIDE(numerator,CALCULATE(COUNT(Orders[Customer ID]),ALL(Orders[Category])))"
+            ],
+            "lineageTag": "13a7108b-99c0-4bba-9870-f4da6a644eae"
           }
         ],
         "partitions": [
