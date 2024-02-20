@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.124.1052.0 (23.12)"
+        "value": "2.126.927.0 (24.02)"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -85,6 +85,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -453,9 +457,11 @@
                 "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
                 "    #\"Added Custom\" = Table.AddColumn(#\"Filtered Rows2\", \"Arrival Time\", each [Ship Date] - [Order Date]),",
                 "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Arrival Time\", type duration}}),",
-                "    #\"Extracted Days\" = Table.TransformColumns(#\"Changed Type1\",{{\"Arrival Time\", Duration.Days, Int64.Type}})",
+                "    #\"Extracted Days\" = Table.TransformColumns(#\"Changed Type1\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
+                "    #\"Sorted Rows\" = Table.Sort(#\"Extracted Days\",{{\"Country/Region\", Order.Ascending}}),",
+                "    #\"Filtered Rows3\" = Table.SelectRows(#\"Sorted Rows\", each Text.StartsWith([Order ID], \"US\"))",
                 "in",
-                "    #\"Extracted Days\""
+                "    #\"Filtered Rows3\""
               ],
               "type": "m"
             }
