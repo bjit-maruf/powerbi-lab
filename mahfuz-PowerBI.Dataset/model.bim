@@ -459,9 +459,12 @@
                 "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Arrival Time\", type duration}}),",
                 "    #\"Extracted Days\" = Table.TransformColumns(#\"Changed Type1\",{{\"Arrival Time\", Duration.Days, Int64.Type}}),",
                 "    #\"Sorted Rows\" = Table.Sort(#\"Extracted Days\",{{\"Country/Region\", Order.Ascending}}),",
-                "    #\"Filtered Rows3\" = Table.SelectRows(#\"Sorted Rows\", each Text.StartsWith([Order ID], \"US\"))",
+                "    #\"Filtered Rows3\" = Table.SelectRows(#\"Sorted Rows\", each Text.StartsWith([Order ID], \"US\")),",
+                "    #\"Filtered Rows4\" = Table.SelectRows(#\"Filtered Rows3\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Filtered Rows5\" = Table.SelectRows(#\"Filtered Rows4\", each true),",
+                "    #\"Filtered Rows6\" = Table.SelectRows(#\"Filtered Rows5\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31))",
                 "in",
-                "    #\"Filtered Rows3\""
+                "    #\"Filtered Rows6\""
               ],
               "type": "m"
             }
