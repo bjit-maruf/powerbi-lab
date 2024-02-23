@@ -5,13 +5,13 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 17.5364872938394
       },
       "nodes": [
         {
           "location": {
-            "x": 394,
-            "y": 70
+            "x": 379.57802370054804,
+            "y": 0
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "bc993a7d-5c73-464f-b2cb-98e487af65a5",
@@ -19,12 +19,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 8,
-            "y": 42
+            "x": 0,
+            "y": 0
           },
           "nodeIndex": "People",
           "nodeLineageTag": "5545cdeb-5482-4511-be10-e2ef950ee6d3",
@@ -36,21 +36,8 @@
         },
         {
           "location": {
-            "x": 58,
-            "y": 372
-          },
-          "nodeIndex": "Returns",
-          "nodeLineageTag": "cb88e080-377d-439b-ab44-3dfcf9b83114",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 3
-        },
-        {
-          "location": {
-            "x": 894,
-            "y": 131
+            "x": 707.88588555266,
+            "y": 0
           },
           "nodeIndex": "Products List",
           "nodeLineageTag": "b2b634a9-8f8b-4d3c-b703-6e1715d4acd6",
@@ -58,11 +45,24 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 2
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1035.4596763031277,
+            "y": 3.16995896117362
+          },
+          "nodeIndex": "Returns",
+          "nodeLineageTag": "e664f4c9-cbf4-42cc-8a5b-999e66395606",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 89.192590520569468,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

@@ -1,5 +1,5 @@
 {
-  "compatibilityLevel": 1550,
+  "compatibilityLevel": 1567,
   "model": {
     "annotations": [
       {
@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Orders\",\"People\",\"Returns\",\"Products List\"]"
+        "value": "[\"Orders\",\"People\",\"Products List\",\"Returns\"]"
       }
     ],
     "culture": "en-US",
@@ -54,27 +54,6 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_e771c1af-a618-4e2c-8f94-723312c86b2b"
-      },
-      {
-        "name": "b0ae78d7-8e0c-4c27-ba12-3c521733617b",
-        "fromColumn": "Product ID",
-        "fromTable": "Orders",
-        "toColumn": "Product ID",
-        "toTable": "Products List"
-      },
-      {
-        "name": "12fc23b0-ab3c-42a0-b8fe-7a89ac043117",
-        "fromColumn": "Order ID",
-        "fromTable": "Orders",
-        "toColumn": "Order ID",
-        "toTable": "Returns"
-      },
-      {
-        "name": "a692c235-b981-4f92-8cb8-b6f4f50964d4",
-        "fromColumn": "Region",
-        "fromTable": "Orders",
-        "toColumn": "Region",
-        "toTable": "People"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -462,9 +441,10 @@
                 "    #\"Filtered Rows3\" = Table.SelectRows(#\"Sorted Rows\", each Text.StartsWith([Order ID], \"US\")),",
                 "    #\"Filtered Rows4\" = Table.SelectRows(#\"Filtered Rows3\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
                 "    #\"Filtered Rows5\" = Table.SelectRows(#\"Filtered Rows4\", each true),",
-                "    #\"Filtered Rows6\" = Table.SelectRows(#\"Filtered Rows5\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31))",
+                "    #\"Filtered Rows6\" = Table.SelectRows(#\"Filtered Rows5\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
+                "    #\"Filtered Rows7\" = Table.SelectRows(#\"Filtered Rows6\", each true)",
                 "in",
-                "    #\"Filtered Rows6\""
+                "    #\"Filtered Rows7\""
               ],
               "type": "m"
             }
@@ -529,65 +509,6 @@
         ]
       },
       {
-        "name": "Returns",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Returned",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "37fc5756-0ae9-48d1-a107-5e0b2c1ac2a7",
-            "sourceColumn": "Returned",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Order ID",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "1e96cf42-b134-405b-aee2-24e13ae72e9a",
-            "sourceColumn": "Order ID",
-            "summarizeBy": "none"
-          }
-        ],
-        "lineageTag": "cb88e080-377d-439b-ab44-3dfcf9b83114",
-        "partitions": [
-          {
-            "name": "Returns",
-            "mode": "import",
-            "source": {
-              "expression": [
-                "let",
-                "    Source = Excel.Workbook(File.Contents(\"D:\\Mahfuz\\Office Work\\Power BI\\Sample - Superstore.xlsx\"), null, true),",
-                "    Returns_Sheet = Source{[Item=\"Returns\",Kind=\"Sheet\"]}[Data],",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Returns_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}}),",
-                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
-                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Returned\", type text}, {\"Order ID\", type text}}),",
-                "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Changed Type1\",{\"Order ID\", \"Returned\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Reordered Columns\")",
-                "in",
-                "    #\"Removed Duplicates\""
-              ],
-              "type": "m"
-            }
-          }
-        ]
-      },
-      {
         "name": "Products List",
         "annotations": [
           {
@@ -615,6 +536,11 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "IsHidden"
               }
             ],
             "dataType": "string",
@@ -1284,6 +1210,67 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "Returns",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Returned",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2ef3a19a-711c-4048-9899-568f2dff7e26",
+            "sourceColumn": "Returned",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Order ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9e90c7fa-f04e-4db3-a105-58f139856bda",
+            "sourceColumn": "Order ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e664f4c9-cbf4-42cc-8a5b-999e66395606",
+        "partitions": [
+          {
+            "name": "Returns",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Excel.Workbook(File.Contents(\"D:\\Mahfuz\\Office Work\\Power BI\\Sample - Superstore.xlsx\"), null, true),",
+                "    Returns_Sheet = Source{[Item=\"Returns\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Returns_Sheet,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Returned\", type text}, {\"Order ID\", type text}})",
+                "in",
+                "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }
