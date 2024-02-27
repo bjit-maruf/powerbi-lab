@@ -54,6 +54,27 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_e771c1af-a618-4e2c-8f94-723312c86b2b"
+      },
+      {
+        "name": "601be4e5-c12f-453d-9203-964a46f89236",
+        "fromColumn": "Order ID",
+        "fromTable": "Orders",
+        "toColumn": "Order ID",
+        "toTable": "Returns"
+      },
+      {
+        "name": "f86d5c45-10d0-483e-b3e0-ca1c16a032a0",
+        "fromColumn": "Product ID",
+        "fromTable": "Orders",
+        "toColumn": "Product ID",
+        "toTable": "Products List"
+      },
+      {
+        "name": "d441c378-5dc3-4875-8297-443c6da13eef",
+        "fromColumn": "Region",
+        "fromTable": "Orders",
+        "toColumn": "Region",
+        "toTable": "People"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -457,6 +478,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [

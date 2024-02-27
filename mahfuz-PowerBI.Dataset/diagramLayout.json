@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 379.57802370054804,
-            "y": 0
+            "x": 734.98871213311907,
+            "y": 50.45262138632711
           },
           "nodeIndex": "Orders",
           "nodeLineageTag": "bc993a7d-5c73-464f-b2cb-98e487af65a5",
@@ -19,12 +19,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 0,
-            "y": 0
+            "x": 310.56391386694685,
+            "y": 1.1211693641406022
           },
           "nodeIndex": "People",
           "nodeLineageTag": "5545cdeb-5482-4511-be10-e2ef950ee6d3",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 707.88588555266,
-            "y": 0
+            "x": 300.90140636962133,
+            "y": 300.47338958968152
           },
           "nodeIndex": "Products List",
           "nodeLineageTag": "b2b634a9-8f8b-4d3c-b703-6e1715d4acd6",
@@ -45,12 +45,12 @@
             "height": 176,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 1035.4596763031277,
-            "y": 3.16995896117362
+            "x": 305.57842024759555,
+            "y": 150.04314566359253
           },
           "nodeIndex": "Returns",
           "nodeLineageTag": "e664f4c9-cbf4-42cc-8a5b-999e66395606",
@@ -58,7 +58,7 @@
             "height": 128,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         }
       ],
       "name": "All tables",
