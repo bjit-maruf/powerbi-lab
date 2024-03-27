@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.126.1261.0 (24.02)"
+        "value": "2.127.1080.0 (24.03)"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -25,7 +25,6 @@
         "name": "en-US",
         "linguisticMetadata": {
           "content": {
-            "DynamicImprovement": "HighConfidence",
             "Language": "en-US",
             "Version": "1.0.0"
           },
@@ -1451,9 +1450,10 @@
                 "    #\"Filtered Rows5\" = Table.SelectRows(#\"Filtered Rows4\", each true),",
                 "    #\"Filtered Rows6\" = Table.SelectRows(#\"Filtered Rows5\", each [Order Date] >= #date(2020, 1, 1) and [Order Date] <= #date(2020, 3, 31)),",
                 "    #\"Filtered Rows7\" = Table.SelectRows(#\"Filtered Rows6\", each true),",
-                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows7\",{\"Order ID\", \"Ship Date\", \"Ship Mode\", \"Customer ID\"})",
+                "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows7\",{\"Order ID\", \"Ship Date\", \"Ship Mode\", \"Customer ID\"}),",
+                "    #\"Filtered Rows8\" = Table.SelectRows(#\"Removed Other Columns\", each ([Ship Mode] = \"First Class\"))",
                 "in",
-                "    #\"Removed Other Columns\""
+                "    #\"Filtered Rows8\""
               ],
               "type": "m"
             }
